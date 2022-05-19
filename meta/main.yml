@@ -1,0 +1,23 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: docker
+  author: luca
+  description: Docker for Linux.
+  company: "na"
+  license: "gpl"
+  min_ansible_version: 2.4
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+  galaxy_tags:
+    - web
+    - system
+    - containers
+    - docker
+    - orchestration
+    - compose
+    - server
