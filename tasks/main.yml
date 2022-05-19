@@ -60,3 +60,17 @@
 
 	- include_tasks: docker-users.yml
 	  when: docker_users | length > 0
+	  
+	- name            : Init a new swarm with default parameters
+	  community.general.docker_swarm:
+	  state         : present
+	  register      : swarm_info
+	  when          : 
+		          - ansible_eth0.ipv4.address == docker_swarm_master_ip
+
+	- name            : Add master nodes
+	  community.general.docker_swarm:
+	  advertise_addr: "{{ node1 }}"
+	  remote_addrs  : ["{{ docker_swarm_master_ip }}"]
+	  join_token    : "{{ swarm_info.swarm_facts.JoinTokens.Manager }}"
+	  state         : join    
